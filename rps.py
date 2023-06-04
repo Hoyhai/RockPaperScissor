@@ -1,38 +1,47 @@
 import random
 
+class RockPaperScissors:
+    def __init__(self):
+        self.moves = ["rock", "paper", "scissors"]
+        self.my_move = ""
+        self.opponent_move = ""
+        self.result = ""
 
-def rps(my_move):
-    moves = {0: "rock", 1: "scissor", 2: "paper"}
+    def play(self) -> None:
+        print("Type your move: rock, paper, or scissors")
+        self.my_move = input().lower()
+        self.opponent_move = random.choice(self.moves)
 
-    random_move = random.randrange(0, 3)
+        print(f"Opponent move is {self.opponent_move}")
+        self.check_result()
 
-    print("0 = rock, 1 = scissor, 2 = paper")
+    def check_result(self) -> None:
+        if self.my_move == self.opponent_move:
+            self.result = "draw"
+        elif (
+            (self.my_move == "rock" and self.opponent_move == "scissors") or
+            (self.my_move == "paper" and self.opponent_move == "rock") or
+            (self.my_move == "scissors" and self.opponent_move == "paper")
+        ):
+            self.result = "win"
+        else:
+            self.result = "lose"
 
-    # my_move = int(input("Enter your choice (number): "))
-    if my_move < 0 or my_move > 2:
-        print("Your choice is wrong!, Try agian.")
-    else:
-        print(f"Your move is ({moves[my_move]})")
-        print(f"Your opponent move is ({moves[random_move]})\n")
-        if my_move == 0:  # rock
-            if random_move == 0:  # rock
-                res = "Draw"
-            elif random_move == 1:  # scissor
-                res = "You Win!!"
-            else:  # paper
-                res = "You lose."
-        if my_move == 1:  # scissor
-            if random_move == 0:  # rock
-                res = "You Win!!"
-            elif random_move == 1:  # scissor
-                res = "Draw"
-            else:  # paper
-                print("You lose.")
-        if my_move == 2:  # paper
-            if random_move == 0:  # rock
-                res = "You Win!!"
-            elif random_move == 1:  # scissor
-                res = "You lose."
-            else:  # paper
-                res = "Draw"
-    return res
+        print(f"You {self.result}!")
+        print()
+
+    def play_again(self) -> bool:
+        print("Do you want to play again? (yes/no)")
+        play_again_input = input().lower()
+
+        return play_again_input == "yes"
+
+if __name__ == "__main__":
+    game = RockPaperScissors()
+    play_again = True
+
+    while play_again:
+        game.play()
+        play_again = game.play_again()
+
+    print("Thank you for playing!")
