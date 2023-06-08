@@ -1,2 +1,2 @@
-# Rock Paper Scissor
-### A simple rock paper scissor game with python
+### Rock Paper Scissor
+- rock paper scissors with command line
