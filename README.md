@@ -1,2 +1,2 @@
 ### Rock Paper Scissor
-- rock paper scissors with command line
+- play rock paper scissors with command line
